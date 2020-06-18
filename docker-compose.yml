@@ -1,0 +1,27 @@
+version: '3.7'
+networks:
+    overlay:
+services:
+    laravel:
+        build:
+            context: ./Dockerfiles
+            dockerfile: Dockerfile-Laravel
+        image: php:7.3-apache
+        volumes:
+            - ./laravel/:/var/www/html
+        networks:
+            - overlay
+        ports:
+            - 8080:80
+        depends_on:
+            - "mongodb"
+    mongodb:
+        image: mongo
+        restart: always
+        networks:
+            - overlay
+        ports:
+            - 27017:27017
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: password
