@@ -14,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::group(array('prefix' => 'residuos'), function () {
+    Route::post('', 'ResiduosController@store');
+
+    Route::get('/', function () {
+        return response()->json(['message' => 'Get', 'status' => 'Connected']);
+    });
+
+
+    Route::delete('/', function () {
+        return response()->json(['message' => 'Deletes', 'status' => 'Connected']);
+    });
 });
