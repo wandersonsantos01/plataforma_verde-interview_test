@@ -4,11 +4,9 @@
 namespace App\Navegacao\Residuos\CarregarPlanilhaResiduos\Strategy;
 
 
-use App\Enums\CriticidadeEnum;
 use App\Navegacao\ContextoNavegacao;
 use App\Navegacao\Strategy\IStrategy;
 use App\Residuos;
-use Illuminate\Support\Str;
 
 class SalvarResiduosStrategy implements IStrategy
 {
@@ -16,16 +14,16 @@ class SalvarResiduosStrategy implements IStrategy
     {
         $resultado = $contextoNavegacao->getResultadoNavegacao()->getResultado();
 
-       foreach ($resultado['assoc'] as $key => $dados) {
-           $residuo = new Residuos();
-           $residuo->nome = $dados['nomeComumDoResiduo'];
-           $residuo->tipo = $dados['tipoDeResiduo'];
-           $residuo->categoria = $dados['categoria'];
-           $residuo->tecnologia_tratamento = $dados['tecnologiaDeTratamento'];
-           $residuo->classe = $dados['classe'];
-           $residuo->unidadeDeMedida = $dados['unidadeDeMedida'];
-           $residuo->peso = $dados['peso'];
-           $residuo->save();
-       }
+        foreach ($resultado['assoc'] as $key => $dados) {
+            $residuo = new Residuos();
+            $residuo->nome = $dados['nomeComumDoResiduo'];
+            $residuo->tipo = $dados['tipoDeResiduo'];
+            $residuo->categoria = $dados['categoria'];
+            $residuo->tecnologia_tratamento = $dados['tecnologiaDeTratamento'];
+            $residuo->classe = $dados['classe'];
+            $residuo->unidadeDeMedida = $dados['unidadeDeMedida'];
+            $residuo->peso = $dados['peso'];
+            $residuo->save();
+        }
     }
 }
