@@ -6,6 +6,7 @@ services:
         build:
             context: ./Dockerfiles
             dockerfile: Dockerfile-Laravel
+        container_name: laravel
         image: php:7.3-apache
         volumes:
             - ./laravel/:/var/www/html
@@ -16,6 +17,7 @@ services:
         depends_on:
             - "mongodb"
     mongodb:
+        container_name: mongodb
         image: mongo
         restart: always
         networks:
