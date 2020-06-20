@@ -13,7 +13,10 @@ class ValidarResiduoStrategy implements IStrategy
 {
     public function executar($idResiduo, ContextoNavegacao $contextoNavegacao)
     {
-        $registro = Residuos::where('_id', $idResiduo)->first();
+        $registro = null;
+        if ($idResiduo !== null){
+            $registro = Residuos::where('_id', $idResiduo)->first();
+        }
 
         if ($registro == null) {
             $contextoNavegacao->setSuspenderNavegacao(true);

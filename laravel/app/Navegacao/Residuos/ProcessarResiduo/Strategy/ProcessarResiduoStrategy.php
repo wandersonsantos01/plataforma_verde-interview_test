@@ -11,6 +11,8 @@ class ProcessarResiduoStrategy implements IStrategy
 {
     public function executar($residuo, ContextoNavegacao $contextoNavegacao)
     {
-        $residuo->update(['status' => 'processado']);
+        if ($residuo != null) {
+            $residuo->update(['status' => 'processado']);
+        }
     }
 }

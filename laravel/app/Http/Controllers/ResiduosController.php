@@ -59,9 +59,9 @@ class ResiduosController extends AbstractController
         return response()->json($retorno);
     }
 
-    public function show($nomeResiduo = '')
+    public function show(Request $request)
     {
-        $contexto = parent::executarNavegacao($nomeResiduo, $this->listarResiduosNavegacaoFactory);
+        $contexto = parent::executarNavegacao($request, $this->listarResiduosNavegacaoFactory);
 
         if ($contexto->getSuspenderNavegacao()) {
             return parent::retornoComErro($contexto->getResultadoNavegacao()->getMensagens(), 400);

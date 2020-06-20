@@ -195,3 +195,9 @@ $ php artisan queue:work
 __
 
 ### Testes
+
+1- Para executar os testes, execute o comando a seguir no terminal:
+
+```shell
+$ docker exec -it laravel php artisan test
+```

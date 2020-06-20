@@ -12,7 +12,10 @@ class ListarResiduosStrategy implements IStrategy
 {
     public function executar($request, ContextoNavegacao $contextoNavegacao)
     {
-        $resultado = Residuos::all();
+        $resultado = null;
+        if ($request != null) {
+            $resultado = Residuos::all();
+        }
 
         $contextoNavegacao->getResultadoNavegacao()->setResultado($resultado);
     }
