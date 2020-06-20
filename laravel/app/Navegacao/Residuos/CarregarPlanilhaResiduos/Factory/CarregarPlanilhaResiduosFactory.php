@@ -9,7 +9,7 @@ use  App\Navegacao\Residuos\CarregarPlanilhaResiduos\Strategy\ValidarPlanilhaRes
 use  App\Navegacao\Residuos\CarregarPlanilhaResiduos\Strategy\ConverterPlanilhaResiduosStrategy;
 use  App\Navegacao\Residuos\CarregarPlanilhaResiduos\Strategy\SalvarResiduosStrategy;
 
-class CarregarPlanilhaResiduosNavegacaoFactory extends AbstractFactory
+class CarregarPlanilhaResiduosFactory extends AbstractFactory
 {
     public function __construct(
         ValidarPlanilhaResiduosStrategy $validarPlanilhaResiduosStrategy,

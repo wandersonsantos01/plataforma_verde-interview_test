@@ -26,6 +26,13 @@ $ docker-compose up -d
 $ docker ps
 ```
 
+2- Instalar pacotes - Composer
+```shell
+$ docker exec -it laravel composer update
+
+$ docker exec -it laravel composer install
+```
+
 2- Acessar `htt://localhost:8080/` - Deve exibir a Welcome Page do Laravel
 
 #### Postman

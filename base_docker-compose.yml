@@ -3,8 +3,11 @@ networks:
     overlay:
 services:
     laravel:
+        build:
+            context: ./Dockerfiles
+            dockerfile: Dockerfile-Laravel
         container_name: laravel
-        image: wandersonsantos01/it_pverde_laravel
+        image: php:7.3-apache
         volumes:
             - ./laravel/:/var/www/html
             - ./configs/php.ini:/usr/local/etc/php/php.ini
