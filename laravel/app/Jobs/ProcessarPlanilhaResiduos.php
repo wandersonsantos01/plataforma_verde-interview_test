@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Http\Controllers\ResiduosController;
 use App\Navegacao\ContextoNavegacao;
-use App\Navegacao\Residuos\ProcessarResiduo\Factory\ProcessarResiduoNavegacaoFactory;
+use App\Navegacao\Residuos\ProcessarResiduo\Factory\ProcessarResiduoFactory;
 use App\Navegacao\Residuos\ProcessarResiduo\Strategy\ProcessarResiduoStrategy;
 use App\Navegacao\ResultadoNavegacao;
 use App\Residuos;
@@ -37,7 +37,7 @@ class ProcessarPlanilhaResiduos implements ShouldQueue
      */
     public function handle()
     {
-        $residuoController = new ProcessarResiduoNavegacaoFactory(new ProcessarResiduoStrategy);
+        $residuoController = new ProcessarResiduoFactory(new ProcessarResiduoStrategy);
 
         $contextoNavegacao = new ContextoNavegacao();
         $contextoNavegacao->setResultadoNavegacao(new ResultadoNavegacao());

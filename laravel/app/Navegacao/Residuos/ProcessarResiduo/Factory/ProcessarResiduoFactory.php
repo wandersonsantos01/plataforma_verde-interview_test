@@ -7,7 +7,7 @@ namespace App\Navegacao\Residuos\ProcessarResiduo\Factory;
 use App\Navegacao\Factory\AbstractFactory;
 use App\Navegacao\Residuos\ProcessarResiduo\Strategy\ProcessarResiduoStrategy;
 
-class ProcessarResiduoNavegacaoFactory extends AbstractFactory
+class ProcessarResiduoFactory extends AbstractFactory
 {
     public function __construct(
         ProcessarResiduoStrategy $processarResiduoStrategy

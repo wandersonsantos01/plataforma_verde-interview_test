@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "353ffa0d-55da-4996-aff6-c539aa29dd8b",
+		"name": "Interview Test - Plataforma Verde",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CarregaPlanilhaResiduos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "planilha",
+							"type": "file",
+							"src": "/C:/projects/interview_tests/plataforma_verde/_docs/planilha_residuos_test01.xlsx"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/residuos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"residuos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListarResiduos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/residuos/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"residuos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RecuperarPlanilhaResiduos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/residuos/planilha/planilha_residuos_test01",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"residuos",
+						"planilha",
+						"planilha_residuos_test01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditarResiduo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Copos Plásticos Contaminado - Editado\",\r\n    \"tipo\": \"Plásticos - Editado\",\r\n    \"categoria\": \"Não Reciclável - Editado\",\r\n    \"tecnologia_tratamento\": \"Aterro Comum - Editado\",\r\n    \"classe\": \"||-A - Editado\",\r\n    \"unidade_medida\": \"un - Editado\",\r\n    \"peso\": 99999\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/residuos/5eee4cc422de4f23b8565e02W",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"residuos",
+						"5eee4cc422de4f23b8565e02W"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletesResiduos",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/residuos/5eed26d2247f1636474cf823",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"residuos",
+						"5eed26d2247f1636474cf823"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

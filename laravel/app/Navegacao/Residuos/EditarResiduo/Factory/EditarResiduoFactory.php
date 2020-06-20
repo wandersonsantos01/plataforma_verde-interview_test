@@ -8,7 +8,7 @@ use App\Navegacao\Factory\AbstractFactory;
 use App\Navegacao\Residuos\EditarResiduo\Strategy\ValidarResiduoStrategy;
 use App\Navegacao\Residuos\EditarResiduo\Strategy\EditarResiduoStrategy;
 
-class EditarResiduoNavegacaoFactory extends AbstractFactory
+class EditarResiduoFactory extends AbstractFactory
 {
     public function __construct(
         ValidarResiduoStrategy $validarResiduoStrategy,

@@ -32,7 +32,7 @@ $ docker ps
 
 1- Abra o Postman
 2- Na parte superior esquerda, clique em Import > File
-3- Selecione o arquivo `postman.json` para testar os endpoints
+3- Selecione o arquivo `_docs/postman_endpoints.json` para testar os endpoints
 
 __
 

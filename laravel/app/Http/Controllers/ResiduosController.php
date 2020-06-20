@@ -4,49 +4,49 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\AbstractController;
 
-use App\Navegacao\Residuos\CarregarPlanilhaResiduos\Factory\CarregarPlanilhaResiduosNavegacaoFactory;
-use App\Navegacao\Residuos\ListarResiduos\Factory\ListarResiduosNavegacaoFactory;
-use App\Navegacao\Residuos\EditarResiduo\Factory\EditarResiduoNavegacaoFactory;
-use App\Navegacao\Residuos\DeletarResiduo\Factory\DeletarResiduoNavegacaoFactory;
-use App\Navegacao\Residuos\RecuperarPlanilhaResiduos\Factory\RecuperarPlanilhaResiduosNavegacaoFactory;
+use App\Navegacao\Residuos\CarregarPlanilhaResiduos\Factory\CarregarPlanilhaResiduosFactory;
+use App\Navegacao\Residuos\ListarResiduos\Factory\ListarResiduosFactory;
+use App\Navegacao\Residuos\EditarResiduo\Factory\EditarResiduoFactory;
+use App\Navegacao\Residuos\DeletarResiduo\Factory\DeletarResiduoFactory;
+use App\Navegacao\Residuos\RecuperarPlanilhaResiduos\Factory\RecuperarPlanilhaResiduosFactory;
 
-use App\Navegacao\Residuos\ProcessarResiduo\Factory\ProcessarResiduoNavegacaoFactory;
+use App\Navegacao\Residuos\ProcessarResiduo\Factory\ProcessarResiduoFactory;
 use App\Residuos;
 use Illuminate\Http\Request;
 
 
 class ResiduosController extends AbstractController
 {
-    private $carregarPlanilhaResiduosNavegacaoFactory;
-    private $listarResiduosNavegacaoFactory;
-    private $editarResiduoNavegacaoFactory;
-    private $deletarResiduoNavegacaoFactory;
-    private $recuperarPlanilhaResiduosNavegacaoFactory;
+    private $carregarPlanilhaResiduosFactory;
+    private $listarResiduosFactory;
+    private $editarResiduoFactory;
+    private $deletarResiduoFactory;
+    private $recuperarPlanilhaResiduosFactory;
 
-    private $processarResiduoNavegacaoFactory;
+    private $processarResiduoFactory;
 
     public function __construct(
-        CarregarPlanilhaResiduosNavegacaoFactory $carregarPlanilhaResiduosNavegacaoFactory,
-        ListarResiduosNavegacaoFactory $listarResiduosNavegacaoFactory,
-        EditarResiduoNavegacaoFactory $editarResiduoNavegacaoFactory,
-        DeletarResiduoNavegacaoFactory $deletarResiduoNavegacaoFactory,
-        RecuperarPlanilhaResiduosNavegacaoFactory $recuperarPlanilhaResiduosNavegacaoFactory,
+        CarregarPlanilhaResiduosFactory $carregarPlanilhaResiduosFactory,
+        ListarResiduosFactory $listarResiduosFactory,
+        EditarResiduoFactory $editarResiduoFactory,
+        DeletarResiduoFactory $deletarResiduoFactory,
+        RecuperarPlanilhaResiduosFactory $recuperarPlanilhaResiduosFactory,
 
-        ProcessarResiduoNavegacaoFactory $processarResiduoNavegacaoFactory
+        ProcessarResiduoFactory $processarResiduoFactory
     )
     {
-        $this->carregarPlanilhaResiduosNavegacaoFactory = $carregarPlanilhaResiduosNavegacaoFactory;
-        $this->listarResiduosNavegacaoFactory = $listarResiduosNavegacaoFactory;
-        $this->editarResiduoNavegacaoFactory = $editarResiduoNavegacaoFactory;
-        $this->deletarResiduoNavegacaoFactory = $deletarResiduoNavegacaoFactory;
-        $this->recuperarPlanilhaResiduosNavegacaoFactory = $recuperarPlanilhaResiduosNavegacaoFactory;
+        $this->carregarPlanilhaResiduosFactory = $carregarPlanilhaResiduosFactory;
+        $this->listarResiduosFactory = $listarResiduosFactory;
+        $this->editarResiduoFactory = $editarResiduoFactory;
+        $this->deletarResiduoFactory = $deletarResiduoFactory;
+        $this->recuperarPlanilhaResiduosFactory = $recuperarPlanilhaResiduosFactory;
 
-        $this->processarResiduoNavegacaoFactory = $processarResiduoNavegacaoFactory;
+        $this->processarResiduoFactory = $processarResiduoFactory;
     }
 
     public function store(Request $request)
     {
-        $contexto = parent::executarNavegacao($request, $this->carregarPlanilhaResiduosNavegacaoFactory);
+        $contexto = parent::executarNavegacao($request, $this->carregarPlanilhaResiduosFactory);
 
         if ($contexto->getSuspenderNavegacao()) {
             return parent::retornoComErro($contexto->getResultadoNavegacao()->getMensagens(), 400);
@@ -61,7 +61,7 @@ class ResiduosController extends AbstractController
 
     public function show(Request $request)
     {
-        $contexto = parent::executarNavegacao($request, $this->listarResiduosNavegacaoFactory);
+        $contexto = parent::executarNavegacao($request, $this->listarResiduosFactory);
 
         if ($contexto->getSuspenderNavegacao()) {
             return parent::retornoComErro($contexto->getResultadoNavegacao()->getMensagens(), 400);
@@ -78,7 +78,7 @@ class ResiduosController extends AbstractController
     public function update($idResiduo, Request $request)
     {
         $request->request->add(["_id" => $idResiduo]);
-        $contexto = parent::executarNavegacao($request, $this->editarResiduoNavegacaoFactory);
+        $contexto = parent::executarNavegacao($request, $this->editarResiduoFactory);
 
         if ($contexto->getSuspenderNavegacao()) {
             return parent::retornoComErro($contexto->getResultadoNavegacao()->getMensagens(), 400);
@@ -93,7 +93,7 @@ class ResiduosController extends AbstractController
 
     public function destroy($idResiduo)
     {
-        $contexto = parent::executarNavegacao($idResiduo, $this->deletarResiduoNavegacaoFactory);
+        $contexto = parent::executarNavegacao($idResiduo, $this->deletarResiduoFactory);
 
         if ($contexto->getSuspenderNavegacao()) {
             return parent::retornoComErro($contexto->getResultadoNavegacao()->getMensagens(), 400);
@@ -108,7 +108,7 @@ class ResiduosController extends AbstractController
 
     public function showPlanilha($nomePlanilha)
     {
-        $contexto = parent::executarNavegacao($nomePlanilha, $this->recuperarPlanilhaResiduosNavegacaoFactory);
+        $contexto = parent::executarNavegacao($nomePlanilha, $this->recuperarPlanilhaResiduosFactory);
 
         if ($contexto->getSuspenderNavegacao()) {
             return parent::retornoComErro($contexto->getResultadoNavegacao()->getMensagens(), 400);
@@ -123,7 +123,7 @@ class ResiduosController extends AbstractController
     }
 
     public function processarResiduos(Residuos $residuo){
-        $contexto = parent::executarNavegacao($residuo, $this->processarResiduoNavegacaoFactory);
+        $contexto = parent::executarNavegacao($residuo, $this->processarResiduoFactory);
 
         if ($contexto->getSuspenderNavegacao()) {
             return parent::retornoComErro($contexto->getResultadoNavegacao()->getMensagens(), 400);
