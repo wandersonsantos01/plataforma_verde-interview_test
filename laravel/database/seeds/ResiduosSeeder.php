@@ -13,6 +13,7 @@ class ResiduosSeeder extends Seeder
     {
         App\Residuos::create([
             [
+                'planilha' => 'planilha_teste.xlsx',
                 'nome' => 'Teste Nome',
                 'tipo' => 'Teste Tipo',
                 'categoria' => 'Teste Categoria',

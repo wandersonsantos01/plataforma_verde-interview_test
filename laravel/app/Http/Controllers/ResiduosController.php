@@ -7,7 +7,7 @@ use App\Http\Controllers\AbstractController;
 use App\Navegacao\Residuos\CarregarPlanilhaResiduos\Factory\CarregarPlanilhaResiduosNavegacaoFactory;
 use App\Navegacao\Residuos\ListarResiduos\Factory\ListarResiduosNavegacaoFactory;
 use App\Navegacao\Residuos\DeletarResiduo\Factory\DeletarResiduoNavegacaoFactory;
-use App\Residuos;
+use App\Navegacao\Residuos\RecuperarPlanilhaResiduos\Factory\RecuperarPlanilhaResiduosNavegacaoFactory;
 use Illuminate\Http\Request;
 
 
@@ -16,16 +16,19 @@ class ResiduosController extends AbstractController
     private $carregarPlanilhaResiduosNavegacaoFactory;
     private $listarResiduosNavegacaoFactory;
     private $deletarResiduoNavegacaoFactory;
+    private $recuperarPlanilhaResiduoNavegacaoFactory;
 
     public function __construct(
         CarregarPlanilhaResiduosNavegacaoFactory $carregarPlanilhaResiduosNavegacaoFactory,
         ListarResiduosNavegacaoFactory $listarResiduosNavegacaoFactory,
-        DeletarResiduoNavegacaoFactory $deletarResiduoNavegacaoFactory
+        DeletarResiduoNavegacaoFactory $deletarResiduoNavegacaoFactory,
+        RecuperarPlanilhaResiduosNavegacaoFactory $recuperarPlanilhaResiduosNavegacaoFactory
     )
     {
         $this->carregarPlanilhaResiduosNavegacaoFactory = $carregarPlanilhaResiduosNavegacaoFactory;
         $this->listarResiduosNavegacaoFactory = $listarResiduosNavegacaoFactory;
         $this->deletarResiduoNavegacaoFactory = $deletarResiduoNavegacaoFactory;
+        $this->recuperarPlanilhaResiduosNavegacaoFactory = $recuperarPlanilhaResiduosNavegacaoFactory;
     }
 
     public function store(Request $request)
@@ -69,6 +72,22 @@ class ResiduosController extends AbstractController
 
         $retorno = [
             "success" => true
+        ];
+
+        return response()->json($retorno);
+    }
+
+    public function showPlanilha($nomePlanilha)
+    {
+        $contexto = parent::executarNavegacao($nomePlanilha, $this->recuperarPlanilhaResiduosNavegacaoFactory);
+
+        if ($contexto->getSuspenderNavegacao()) {
+            return parent::retornoComErro($contexto->getResultadoNavegacao()->getMensagens(), 400);
+        }
+
+        $retorno = [
+            "success" => true,
+            "data" => $contexto->getResultadoNavegacao()->getResultado()
         ];
 
         return response()->json($retorno);

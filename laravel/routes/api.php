@@ -23,4 +23,6 @@ Route::group(array('prefix' => 'residuos'), function () {
     Route::get('', 'ResiduosController@show');
     Route::put('', 'ResiduosController@update');
     Route::delete('{idResiduo}', 'ResiduosController@destroy');
+
+    Route::get('/planilha/{nomePlanilha}', 'ResiduosController@showPlanilha');
 });

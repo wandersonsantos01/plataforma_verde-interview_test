@@ -16,6 +16,7 @@ class SalvarResiduosStrategy implements IStrategy
 
         foreach ($resultado['assoc'] as $key => $dados) {
             $residuo = new Residuos();
+            $residuo->planilha = $request->planilha->getClientOriginalName();
             $residuo->nome = $dados['nomeComumDoResiduo'];
             $residuo->tipo = $dados['tipoDeResiduo'];
             $residuo->categoria = $dados['categoria'];
