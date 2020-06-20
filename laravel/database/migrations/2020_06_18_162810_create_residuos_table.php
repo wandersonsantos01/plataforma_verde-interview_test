@@ -15,6 +15,8 @@ class CreateResiduosTable extends Migration
     {
         Schema::create('residuos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('planilha', 255);
+            $table->string('status', 50);
             $table->string('nome', 255);
             $table->string('tipo', 255);
             $table->string('categoria', 255);

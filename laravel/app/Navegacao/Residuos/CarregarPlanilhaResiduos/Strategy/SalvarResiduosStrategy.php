@@ -17,12 +17,13 @@ class SalvarResiduosStrategy implements IStrategy
         foreach ($resultado['assoc'] as $key => $dados) {
             $residuo = new Residuos();
             $residuo->planilha = $request->planilha->getClientOriginalName();
+            $residuo->status = "pendente";
             $residuo->nome = $dados['nomeComumDoResiduo'];
             $residuo->tipo = $dados['tipoDeResiduo'];
             $residuo->categoria = $dados['categoria'];
             $residuo->tecnologia_tratamento = $dados['tecnologiaDeTratamento'];
             $residuo->classe = $dados['classe'];
-            $residuo->unidadeDeMedida = $dados['unidadeDeMedida'];
+            $residuo->unidade_medida = $dados['unidadeDeMedida'];
             $residuo->peso = $dados['peso'];
             $residuo->save();
         }

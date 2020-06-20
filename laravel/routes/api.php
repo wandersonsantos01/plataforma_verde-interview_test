@@ -21,8 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(array('prefix' => 'residuos'), function () {
     Route::post('', 'ResiduosController@store');
     Route::get('', 'ResiduosController@show');
-    Route::put('', 'ResiduosController@update');
     Route::delete('{idResiduo}', 'ResiduosController@destroy');
+    Route::put('{idResiduo}', 'ResiduosController@update');
 
     Route::get('/planilha/{nomePlanilha}', 'ResiduosController@showPlanilha');
 });
