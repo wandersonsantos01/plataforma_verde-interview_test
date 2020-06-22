@@ -11,9 +11,9 @@ WORKDIR /var/www/html
 RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libzip-dev \
-	unzip
+	unzip \
 	libjpeg62-turbo-dev \
-    libpng-dev \
+    libpng-dev
 RUN docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install gd mysqli opcache
 RUN a2enmod rewrite
@@ -21,13 +21,10 @@ RUN docker-php-ext-install zip
 RUN docker-php-ext-install pdo_mysql
 
 ### INSTALA EXTENSAO DO MONGODB ###
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends openssl libssl-dev libcurl4-openssl-dev git \
+RUN apt-get install -y --no-install-recommends openssl libssl-dev libcurl4-openssl-dev git \
     && pecl install mongodb \
     && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
-    && echo "extension=mongodb.so" >> /usr/local/etc/php/php.ini \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && echo "extension=mongodb.so" >> /usr/local/etc/php/php.ini
 
 ### INSTALA COMPOSER ###
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -35,7 +32,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 ### INSTALA XDEBUG ###
 RUN touch /var/log/xdebug.log
 RUN pecl install xdebug
-RUN echo "zend_extension=xdebug.so" >> /usr/local/etc/php/php.ini
 
 ### AJUSTE DA HORA ###
 ENV TZ=America/Sao_Paulo
